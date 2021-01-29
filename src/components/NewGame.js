@@ -43,14 +43,18 @@ const NewGame = () => {
         )
     }
 
+    const showPlayersInGame = () => {
+        return (<ul>
+            {currentGame.players.map(player => <li key={player.name}>{player.name} {player.color}</li>)}
+        </ul>)
+    }
+
     return (
         <div>
             <h1>New Game Placeholder</h1>
             <p>{currentGame.id}</p>
             <h2>Add Player</h2>
-            <ul>
-                {currentGame.players.map(player => <li key={player.name}>{player.name} {player.color}</li>)}
-            </ul>
+            {showPlayersInGame()}
             <form onSubmit={onAddPlayer}>
                 <input onChange={onNameChange} type="text" name="player_name" placeholder="Name" value={playerToAdd.name} />
                 <select onChange={onColorChange}>
