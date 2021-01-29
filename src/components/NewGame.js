@@ -64,9 +64,8 @@ const NewGame = () => {
 
     return (
         <div>
-            <h1>New Game Placeholder</h1>
-            <p>{currentGame.id}</p>
-
+            <h1>New Game</h1>
+            <h2>Players</h2>
             {showPlayersInGame()}
             {currentGame.players.length < 6 && 
                 <>
