@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
 const NewGame = () => {
-    const blankPlayerTemplate = {name: '', score: 0}
+    const blankPlayerTemplate = {id: uuid(), name: '', score: 0}
     const colors = ['black', 'blue', 'green', 'pink', 'red', 'yellow']
     
     const [currentGame, setCurrentGame] = useState({id: uuid(), players: []})
@@ -45,8 +45,21 @@ const NewGame = () => {
 
     const showPlayersInGame = () => {
         return (<ul>
-            {currentGame.players.map(player => <li key={player.name}>{player.name} {player.color}</li>)}
+            {currentGame.players.map(player => 
+                <li key={player.name}>
+                    {player.name} {player.color}
+                    <button onClick={() => removePlayer(player.id, player.color)}>Remove</button>
+                </li>
+            )}
         </ul>)
+    }
+
+    const removePlayer = (playerId, color) => {
+        setCurrentGame({
+            ...currentGame,
+            players: currentGame.players.filter(player => player.id !== playerId)
+        })
+        setColorOptions([...colorOptions, color].sort())
     }
 
     return (
