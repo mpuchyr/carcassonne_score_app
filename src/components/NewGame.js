@@ -55,14 +55,16 @@ const NewGame = () => {
             <p>{currentGame.id}</p>
             <h2>Add Player</h2>
             {showPlayersInGame()}
-            <form onSubmit={onAddPlayer}>
-                <input onChange={onNameChange} type="text" name="player_name" placeholder="Name" value={playerToAdd.name} />
-                <select onChange={onColorChange}>
-                    <option value="" required>Color</option>
-                    {colorSelection()}
-                </select>
-                <button>Add Player</button>
-            </form>
+            {currentGame.players.length < 6 && 
+                <form onSubmit={onAddPlayer}>
+                    <input onChange={onNameChange} type="text" name="player_name" placeholder="Name" value={playerToAdd.name} />
+                    <select onChange={onColorChange}>
+                        <option value="" required>Color</option>
+                        {colorSelection()}
+                    </select>
+                    <button>Add Player</button>
+                </form>
+            }
         </div>
     )
 }
