@@ -13,13 +13,23 @@ const NewGame = () => {
         })
     }
 
+    const onAddPlayer = (e) => {
+        e.preventDefault()
+        setCurrentGame({
+            ...currentGame,
+            players: [...currentGame.players, playerToAdd]
+        })
+        setPlayerToAdd(blankPlayerTemplate)
+    }
+
     return (
         <div>
             <h1>New Game Placeholder</h1>
             <p>{currentGame.id}</p>
             <h2>Add Player</h2>
-            <form>
+            <form onSubmit={onAddPlayer}>
                 <input onChange={onNameChange} type="text" name="player_name" placeholder="Name" value={playerToAdd.name} />
+                <button>Add Player</button>
             </form>
         </div>
     )
