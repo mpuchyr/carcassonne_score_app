@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
 const NewGame = () => {
+    const blankPlayerTemplate = {name: '', score: 0}
     const [currentGame, setCurrentGame] = useState({id: uuid(), players: []})
-    const [playerToAdd, setPlayerToAdd] = useState({name: '', score: 0})
+    const [playerToAdd, setPlayerToAdd] = useState(blankPlayerTemplate)
     
     const onNameChange = (e) => {
         setPlayerToAdd({
