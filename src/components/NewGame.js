@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { v4 as uuid } from 'uuid';
+import GameContext from '../context/game-context';
 
-const NewGame = () => {
+const NewGame = (props) => {
+    const { game, setGame } = useContext(GameContext)
+    console.log(game)
+
     const blankPlayerTemplate = {id: uuid(), name: '', score: 0}
     const colors = ['black', 'blue', 'green', 'pink', 'red', 'yellow']
     
     const [currentGame, setCurrentGame] = useState({id: uuid(), players: []})
     const [playerToAdd, setPlayerToAdd] = useState(blankPlayerTemplate)
     const [colorOptions, setColorOptions] = useState(colors)
-    
+
     const onNameChange = (e) => {
         setPlayerToAdd({
             ...playerToAdd,
@@ -62,6 +66,11 @@ const NewGame = () => {
         setColorOptions([...colorOptions, color].sort())
     }
 
+    const onDone = () => {
+        setGame(currentGame)
+        props.history.push('/history')
+    }
+
     return (
         <div>
             <h1>New Game</h1>
@@ -80,6 +89,7 @@ const NewGame = () => {
                 </form>
                 </>
             }
+            <button onClick={onDone}>Start Game</button>
         </div>
     )
 }

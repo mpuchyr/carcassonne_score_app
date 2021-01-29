@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import GameContext from '../context/game-context';
 
 const History = () => {
+    const { game } = useContext(GameContext)
     return (
-        <h1>History Placeholder</h1>
+        <div>
+            <h1>History Placeholder</h1>
+            <button onClick={() => console.log(game)}>Click Me</button>
+        </div>
     )
 }
 
