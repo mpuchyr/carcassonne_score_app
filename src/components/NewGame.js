@@ -53,9 +53,11 @@ const NewGame = () => {
         <div>
             <h1>New Game Placeholder</h1>
             <p>{currentGame.id}</p>
-            <h2>Add Player</h2>
+
             {showPlayersInGame()}
             {currentGame.players.length < 6 && 
+                <>
+                <h2>Add Player</h2>
                 <form onSubmit={onAddPlayer}>
                     <input onChange={onNameChange} type="text" name="player_name" placeholder="Name" value={playerToAdd.name} />
                     <select onChange={onColorChange}>
@@ -64,6 +66,7 @@ const NewGame = () => {
                     </select>
                     <button>Add Player</button>
                 </form>
+                </>
             }
         </div>
     )
