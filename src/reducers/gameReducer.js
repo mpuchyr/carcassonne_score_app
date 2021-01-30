@@ -8,7 +8,7 @@ const gameReducer = (state, action) => {
                     ...state,
                     players: state.players.forEach(player => {
                         if (player.id === action.playerId) {
-                            player.score += action.total
+                            player.score += parseInt(action.total)
                         }
                     })
                 }

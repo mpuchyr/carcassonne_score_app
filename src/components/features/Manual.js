@@ -1,8 +1,9 @@
-import React, { useContext, useState, useReducer } from 'react';
+import React, { useContext, useState } from 'react';
 import { addPoints } from '../../actions/actions';
 import GameContext from '../../context/game-context';
 
-const Manual = ({ playerId }) => {
+const Manual = ({ playerId, history }) => {
+    console.log(history)
     const [score, setScore] = useState(0)
 
     const { dispatch } = useContext(GameContext)
@@ -11,17 +12,22 @@ const Manual = ({ playerId }) => {
         setScore(e.target.value)
     }
 
+    const onAdd = () => {
+        dispatch(addPoints(playerId, score))
+        history.push('/')
+    }
+
     return (
         <div>
             <h1>Manual Point Entry</h1>
-            <form>
+            <div>
                 <input type="number" min="0" onChange={changeScore}/>
                 <input type="checkbox" />
                 <label>This feature is shared</label>
                 <p>Total: {score}</p>
-                <button>Add</button>
+                <button onClick={onAdd}>Add</button>
                 <button>Subtract</button>
-            </form>
+            </div>
         </div>
     )
 }

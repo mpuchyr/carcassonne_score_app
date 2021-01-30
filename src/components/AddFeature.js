@@ -9,21 +9,22 @@ import Road from './features/Road';
 const AddFeature = (props) => {
     const currentFeature = props.match.params.featurename
     const playerId = props.match.params.id
+    const history = props.history
     
     const featureToShow = (feature) => {
         switch(feature) {
             case 'barn':
-                return <Barn playerId={playerId}/>
+                return <Barn playerId={playerId} history={history}/>
             case 'city':
-                return <City playerId={playerId}/>
+                return <City playerId={playerId} history={history}/>
             case 'farm':
-                return <Farm playerId={playerId}/>
+                return <Farm playerId={playerId} history={history}/>
             case 'monastary':
-                return <Monastary playerId={playerId}/>
+                return <Monastary playerId={playerId} history={history}/>
             case 'road':
-                return <Road playerId={playerId}/>
+                return <Road playerId={playerId} history={history}/>
             default:
-                return <Manual playerId={playerId}/>
+                return <Manual playerId={playerId} history={history}/>
         }
     }
     
