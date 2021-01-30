@@ -5,7 +5,14 @@ const Manual = () => {
 
     return (
         <div>
-            <h1>Manual Placeholder</h1>
+            <h1>Manual Point Entry</h1>
+            <form>
+                <input type="number" min="0" />
+                <input type="checkbox" />
+                <label>This feature is shared</label>
+                <button>Add</button>
+                <button>Subtract</button>
+            </form>
         </div>
     )
 }
