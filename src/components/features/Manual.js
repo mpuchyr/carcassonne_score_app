@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState, useReducer } from 'react';
+import { addPoints } from '../../actions/actions';
+import GameContext from '../../context/game-context';
 
 const Manual = ({ playerId }) => {
     const [score, setScore] = useState(0)
+
+    const { dispatch } = useContext(GameContext)
 
     const changeScore = (e) => {
         setScore(e.target.value)

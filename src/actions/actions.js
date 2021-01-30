@@ -7,7 +7,7 @@ const startNewGame = (newGame) => {
 
 const addPoints = (playerId, total) => {
     return {
-        type: 'ADD',
+        type: 'ADD_POINTS',
         playerId,
         total
     }
