@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import GameContext from '../context/game-context';
+import { startNewGame } from '../actions/actions';
 
 const NewGame = (props) => {
-    const { game, setGame } = useContext(GameContext)
+    const { game, dispatch } = useContext(GameContext)
     console.log(game)
 
     const blankPlayerTemplate = {id: uuid(), name: '', score: 0}
@@ -67,7 +68,7 @@ const NewGame = (props) => {
     }
 
     const onDone = () => {
-        setGame(currentGame)
+        dispatch(startNewGame(currentGame))
         props.history.push('/history')
     }
 

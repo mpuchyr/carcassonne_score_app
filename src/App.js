@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import History from './components/History';
 import NewGame from './components/NewGame';
 import Player from './components/Player';
 import System from './components/System';
 import GameContext from './context/game-context';
+import { gameReducer } from './reducers/gameReducer';
 
 function App() {
-  const [game, setGame] = useState({})
+  const [game, dispatch] = useReducer(gameReducer, {})
   
   return (
       
         <Router>
           <h1>Placeholder</h1>          
-          <GameContext.Provider value={{game, setGame}}>
+          <GameContext.Provider value={{game, dispatch}}>
             <Switch>
               <Route exact path="/history" component={History} />
               <Route exact path="/newgame" component={NewGame} />
