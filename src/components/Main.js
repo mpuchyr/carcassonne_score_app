@@ -22,7 +22,7 @@ const Main = (props) => {
     return (
         <div>
             <h1>Main Screen Placeholder</h1>
-            {showAllPlayers()}
+            {game.players && showAllPlayers()}
         </div>
     )
 }
