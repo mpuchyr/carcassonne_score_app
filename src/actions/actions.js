@@ -5,4 +5,12 @@ const startNewGame = (newGame) => {
     }
 }
 
-export { startNewGame }
+const addPoints = (playerId, total) => {
+    return {
+        type: 'ADD',
+        playerId,
+        total
+    }
+}
+
+export { startNewGame, addPoints }
