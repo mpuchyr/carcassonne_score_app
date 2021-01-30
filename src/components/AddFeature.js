@@ -10,14 +10,14 @@ const AddFeature = (props) => {
     const currentFeature = props.match.params.featurename
     
     const featureToShow = (feature) => {
-        switch(props.match.params.featurename) {
+        switch(feature) {
             case 'barn':
                 return <Barn />
             case 'city':
                 return <City />
             case 'farm':
                 return <Farm />
-            case 'Monastary':
+            case 'monastary':
                 return <Monastary />
             case 'road':
                 return <Road />
@@ -29,7 +29,7 @@ const AddFeature = (props) => {
     return(
         <div>
             <h1>Add Feature Placeholder</h1>
-            <p>{props.match.params.featurename}</p>
+            <p>{currentFeature}</p>
             {featureToShow(currentFeature)}
         </div>
     )
