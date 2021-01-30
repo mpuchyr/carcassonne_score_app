@@ -69,7 +69,7 @@ const NewGame = (props) => {
 
     const onDone = () => {
         dispatch(startNewGame(currentGame))
-        props.history.push('/history')
+        props.history.push('/')
     }
 
     return (
