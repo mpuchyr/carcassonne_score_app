@@ -3,7 +3,8 @@ import GameContext from '../context/game-context';
 
 const Main = (props) => {
     const { game } = useContext(GameContext)
-    
+
+
     const showAllPlayers = () => {
         return (
             game.players.map(player => {
@@ -23,6 +24,7 @@ const Main = (props) => {
         <div>
             <h1>Main Screen Placeholder</h1>
             {game.players && showAllPlayers()}
+            <button onClick={() => console.log(game)}>Click Me</button>
         </div>
     )
 }

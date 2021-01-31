@@ -3,10 +3,9 @@ import { addPoints } from '../../actions/actions';
 import GameContext from '../../context/game-context';
 
 const Manual = ({ playerId, history }) => {
-    console.log(history)
     const [score, setScore] = useState(0)
 
-    const { dispatch } = useContext(GameContext)
+    const { game, dispatch } = useContext(GameContext)
 
     const changeScore = (e) => {
         setScore(e.target.value)
@@ -27,6 +26,7 @@ const Manual = ({ playerId, history }) => {
                 <p>Total: {score}</p>
                 <button onClick={onAdd}>Add</button>
                 <button>Subtract</button>
+                <button onClick={() => console.log(game)}>Click Me</button>
             </div>
         </div>
     )

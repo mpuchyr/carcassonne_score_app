@@ -4,8 +4,7 @@ import GameContext from '../context/game-context';
 import { startNewGame } from '../actions/actions';
 
 const NewGame = (props) => {
-    const { game, dispatch } = useContext(GameContext)
-    console.log(game)
+    const { dispatch } = useContext(GameContext)
 
     const blankPlayerTemplate = {id: uuid(), name: '', score: 0}
     const colors = ['black', 'blue', 'green', 'pink', 'red', 'yellow']

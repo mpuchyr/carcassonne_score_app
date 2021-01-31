@@ -12,6 +12,7 @@ import { gameReducer } from './reducers/gameReducer';
 function App() {
   const [game, dispatch] = useReducer(gameReducer, {})
   
+
   return (
       
         <Router>
