@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { addPoints } from '../../actions/actions';
+import { addPoints, subtractPoints } from '../../actions/actions';
 import GameContext from '../../context/game-context';
 
 const Manual = ({ playerId, history }) => {
@@ -16,6 +16,11 @@ const Manual = ({ playerId, history }) => {
         history.push('/')
     }
 
+    const onSubtract = () => {
+        dispatch(subtractPoints(playerId, score))
+        history.push('/')
+    }
+
     return (
         <div>
             <h1>Manual Point Entry</h1>
@@ -25,7 +30,7 @@ const Manual = ({ playerId, history }) => {
                 <label>This feature is shared</label>
                 <p>Total: {score}</p>
                 <button onClick={onAdd}>Add</button>
-                <button>Subtract</button>
+                <button onClick={onSubtract}>Subtract</button>
                 <button onClick={() => console.log(game)}>Click Me</button>
             </div>
         </div>

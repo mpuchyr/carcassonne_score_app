@@ -18,6 +18,21 @@ const gameReducer = (state, action) => {
                     })
                 }
             )
+        case 'SUBTRACT_POINTS':            
+            return (
+                {
+                    ...state,
+                    players: state.players.map(player => {
+                        if (player.id === action.playerId) {
+                            const newTotal = player.score -= parseInt(action.total)
+                            return {
+                                ...player,
+                                score: newTotal >= 0 ? newTotal : 0
+                            }
+                        }
+                    })
+                }
+            )
         default:
             return state
     }

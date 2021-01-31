@@ -13,4 +13,12 @@ const addPoints = (playerId, total) => {
     }
 }
 
-export { startNewGame, addPoints }
+const subtractPoints = (playerId, total) => {
+    return {
+        type: 'SUBTRACT_POINTS',
+        playerId,
+        total
+    }
+}
+
+export { startNewGame, addPoints, subtractPoints }
