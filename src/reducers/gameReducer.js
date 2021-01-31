@@ -29,6 +29,8 @@ const gameReducer = (state, action) => {
                                 ...player,
                                 score: newTotal >= 0 ? newTotal : 0
                             }
+                        } else {
+                            return player
                         }
                     })
                 }
