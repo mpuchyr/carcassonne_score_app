@@ -8,6 +8,8 @@ const Player = (props) => {
     const id = props.match.params.id
     const locationPartial = `/players/${id}`
 
+    const player = game.players.filter(player => player.id === id)[0]
+
     const toBarn = `${locationPartial}/barn`
     const toCity = `${locationPartial}/city`
     const toFarm = `${locationPartial}/farm`
@@ -17,6 +19,7 @@ const Player = (props) => {
     
     return (
         <div>
+            <h1>{player.name}</h1>
             <h1>Player #{props.match.params.id} Placeholder</h1>
             <NavLink to={toBarn}>Barn</NavLink>
             <NavLink to={toCity}>City</NavLink>
