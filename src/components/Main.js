@@ -25,6 +25,7 @@ const Main = (props) => {
             <h1>Main Screen Placeholder</h1>
             {game.players && showAllPlayers()}
             <button onClick={() => props.history.push('/newgame')}>New Game</button>
+            <button onClick={() => props.history.push('/history')}>History</button>
             <button onClick={() => console.log(game)}>Click Me</button>
         </div>
     )
