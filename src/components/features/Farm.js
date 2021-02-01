@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { addPoints } from '../../actions/actions';
 import GameContext from '../../context/game-context'; 
 
