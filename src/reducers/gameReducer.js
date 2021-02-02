@@ -7,7 +7,6 @@ const gameReducer = (state, action) => {
                 {
                     ...state,
                     players: state.players.map(player => {
-                        // if (player.id === action.playerId) {
                         if (action.playerId.includes(player.id)) {
                             return {
                                 ...player,
@@ -24,7 +23,7 @@ const gameReducer = (state, action) => {
                 {
                     ...state,
                     players: state.players.map(player => {
-                        if (player.id === action.playerId) {
+                        if (action.playerId.includes(player.id)) {
                             const newTotal = player.score -= parseInt(action.total)
                             return {
                                 ...player,
