@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { addPoints } from '../../actions/actions';
+import GameContext from '../../context/game-context';
 
-const City = () => {
+const City = ({ playerId, history }) => {
+    const { dispatch } = useContext(GameContext)
+
     const [score, setScore] = useState(0)
     const [hasCathedral, setHasCathedral] = useState(false)
     const [endGame, setEndGame] = useState(false)
@@ -24,11 +28,17 @@ const City = () => {
             setScore(e.target.value * 2)
         }
     }
+
+    const onSubmit = (e) => {
+        e.preventDefault()
+        dispatch(addPoints(playerId, score))
+        history.push('/')
+    }
     
     return (
         <div>
             <h1>City</h1>
-            <form>
+            <form onSubmit={onSubmit}>
                 <label>Number of City Tiles, including Shields: </label>
                 <input type="number" min="0" onChange={onChange}/>
                 <input type="checkbox" onChange={cityHasCathedral}/>
