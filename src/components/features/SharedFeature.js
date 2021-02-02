@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { addPoints } from '../../actions/actions';
 import GameContext from '../../context/game-context';
 
-const SharedFeature = ({ playerId, score }) => {
+const SharedFeature = ({ playerId, score, history }) => {
     const { game, dispatch} = useContext(GameContext)
     const [playersToShare, setPlayersToShare] = useState([playerId])
 
@@ -15,6 +15,13 @@ const SharedFeature = ({ playerId, score }) => {
         } else {
             setPlayersToShare([...playersToShare, id])
         }
+    }
+
+    const onSubmit = (e) => {
+        e.preventDefault()
+        const pointsToAdd = parseInt(score)
+        dispatch(addPoints(playersToShare, pointsToAdd))
+        history.push('/')
     }
 
     const displayPlayers = () => {
@@ -32,8 +39,9 @@ const SharedFeature = ({ playerId, score }) => {
     return (
         <div>
             <h1>Shared Feature Placeholder</h1>
-            <form>
+            <form onSubmit={onSubmit}>
                 {displayPlayers()}
+                <button>Share Points</button>
             </form>
             <button onClick={() => console.log(game)}>Click Me</button>
             <button onClick={() => console.log(playerId)}>Player Id</button>
