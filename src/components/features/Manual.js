@@ -59,7 +59,7 @@ const Manual = ({ playerId, history }) => {
                     onRequestClose={closeModal}
                     contentLabel="Shared Feature"
                 >
-                    <SharedFeature />
+                    <SharedFeature playerId={playerId}/>
                 </Modal>
             </div>
         </div>
