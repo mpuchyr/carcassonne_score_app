@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { addPoints } from '../../actions/actions';
 import GameContext from '../../context/game-context';
 
 const SharedFeature = () => {
