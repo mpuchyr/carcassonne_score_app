@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import { addPoints } from '../../actions/actions';
 import GameContext from '../../context/game-context'; 
 import SharedFeature from './SharedFeature';
+import SharedFeatureModal from './SharedFeatureModal';
 
 const Barn = ({ playerId, history }) => {
     const [isShared, setIsShared] = useState(false)
@@ -59,14 +60,14 @@ const Barn = ({ playerId, history }) => {
                 <button>Add</button>
             </form>
             <button onClick={() => console.log(game)}>Click Me</button>
-            <Modal
-                isOpen={modalIsOpen}
-                onRequestClose={closeModal}
-                contentLabel="Shared Feature"
-            >
-                <SharedFeature playerId={playerId} score={(cityPoints + castlePoints)} history={history}/>
-            </Modal>
-        </div>
+            <SharedFeatureModal 
+                playerId={playerId}
+                history={history}
+                modalIsOpen={modalIsOpen}
+                closeModal={closeModal}
+                score={(cityPoints + castlePoints)}
+            />
+            </div>
     )
 }
 
