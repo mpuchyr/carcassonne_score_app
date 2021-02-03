@@ -1,10 +1,13 @@
 import React, { useContext, useState } from 'react';
+import Modal from 'react-modal';
 import { addPoints } from '../../actions/actions';
 import GameContext from '../../context/game-context'; 
+import SharedFeature from './SharedFeature';
 
 const Barn = ({ playerId, history }) => {
     const [score, setScore] = useState(0)
-    const [shared, setShared] = useState(false)
+    const [isShared, setIsShared] = useState(false)
+    const [modalIsOpen, setIsOpen] = useState(false)
     const [castlePoints, setCastlePoints] = useState(0)
     const [cityPoints, setCityPoints] = useState(0)
 
@@ -16,6 +19,10 @@ const Barn = ({ playerId, history }) => {
 
     const addCityPoints = (e) => {
         setCityPoints(e.target.value * 4)
+    }
+
+    const isShared = () => {
+        setIsShared(!isShared)
     }
 
     const onSubmit = (e) => {
@@ -33,12 +40,15 @@ const Barn = ({ playerId, history }) => {
                 <input type="number" min="0" onChange={addCityPoints}/>
                 <label>Castles: </label>
                 <input type="number" min="0" onChange={addCastlePoints} />
-                <input type="checkbox" />
+                <input type="checkbox" onChange={isShared}/>
                 <label>Feature is shared</label>
                 <p>Total: {cityPoints + castlePoints}</p>
                 <button>Add</button>
             </form>
             <button onClick={() => console.log(game)}>Click Me</button>
+            <Modal>
+                <SharedFeature />
+            </Modal>
         </div>
     )
 }
