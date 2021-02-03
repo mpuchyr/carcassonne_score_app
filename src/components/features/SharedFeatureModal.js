@@ -10,6 +10,7 @@ const SharedFeatureModal = ({ playerId, score, history }) => {
         <Modal
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
+            ariaHideApp={false}
             contentLabel="Shared Feature"
         >
             <SharedFeature playerId={playerId} score={score} history={history}/>
