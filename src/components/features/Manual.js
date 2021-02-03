@@ -2,7 +2,8 @@ import React, { useContext, useState } from 'react';
 import Modal from 'react-modal';
 import { addPoints, subtractPoints } from '../../actions/actions';
 import GameContext from '../../context/game-context';
-import SharedFeature from './SharedFeature';
+import ModalContext from '../../context/modal-context';
+import SharedFeatureModal from './SharedFeatureModal';
 
 const Manual = ({ playerId, history }) => {
     const [score, setScore] = useState(0)
@@ -10,14 +11,15 @@ const Manual = ({ playerId, history }) => {
     const [modalIsOpen, setIsOpen] = useState(false)
 
     const { game, dispatch } = useContext(GameContext)
+    const { openModal } = useContext(ModalContext)
 
-    const openModal = () => {
-        setIsOpen(true)
-    }
+    // const openModal = () => {
+    //     setIsOpen(true)
+    // }
 
-    const closeModal = () => {
-        setIsOpen(false)
-    }
+    // const closeModal = () => {
+    //     setIsOpen(false)
+    // }
 
     const changeScore = (e) => {
         setScore(e.target.value)
@@ -54,13 +56,11 @@ const Manual = ({ playerId, history }) => {
                 <button onClick={onSubtract}>Subtract</button>
                 <button onClick={() => console.log(game)}>Click Me</button>
                 <button onClick={() => console.log(isShared)}>Check isShared</button>
-                <Modal
-                    isOpen={modalIsOpen}
-                    onRequestClose={closeModal}
-                    contentLabel="Shared Feature"
-                >
-                    <SharedFeature playerId={playerId} score={score} history={history}/>
-                </Modal>
+                <SharedFeatureModal 
+                    playerId={playerId}
+                    history={history}
+                    score={score}
+                />
             </div>
         </div>
     )

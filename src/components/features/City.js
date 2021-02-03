@@ -1,26 +1,18 @@
 import React, { useContext, useState } from 'react';
 import { addPoints } from '../../actions/actions';
 import GameContext from '../../context/game-context';
+import ModalContext from '../../context/modal-context';
 import SharedFeatureModal from './SharedFeatureModal';
 
 const City = ({ playerId, history }) => {
     const { dispatch } = useContext(GameContext)
+    const { openModal, closeModal, modalIsOpen } = useContext(ModalContext)
 
     const [score, setScore] = useState(0)
     const [hasCathedral, setHasCathedral] = useState(false)
     const [endGame, setEndGame] = useState(false)
     const [isShared, setIsShared] = useState(false)
 
-    const [modalIsOpen, setIsOpen] = useState(false)
-
-
-    const openModal = () => {
-        setIsOpen(true)
-    }
-
-    const closeModal = () => {
-        setIsOpen(false)
-    }
 
     const featureIsShared = () => {
         setIsShared(!isShared)
@@ -75,8 +67,6 @@ const City = ({ playerId, history }) => {
             <SharedFeatureModal 
                 playerId={playerId}
                 history={history}
-                modalIsOpen={modalIsOpen}
-                closeModal={closeModal}
                 score={score}
             />
         </div>

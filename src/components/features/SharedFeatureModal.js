@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Modal from 'react-modal';
+import ModalContext from '../../context/modal-context';
 import SharedFeature from './SharedFeature';
 
-const SharedFeatureModal = ({ playerId, score, history, modalIsOpen, closeModal }) => {
-    
+const SharedFeatureModal = ({ playerId, score, history }) => {
+    const { modalIsOpen, closeModal } = useContext(ModalContext)
+
     return (
         <Modal
             isOpen={modalIsOpen}

@@ -1,25 +1,17 @@
 import React, { useContext, useState } from 'react';
-import Modal from 'react-modal';
 import { addPoints } from '../../actions/actions';
-import GameContext from '../../context/game-context'; 
-import SharedFeature from './SharedFeature';
+import GameContext from '../../context/game-context';
+import ModalContext from '../../context/modal-context';
 import SharedFeatureModal from './SharedFeatureModal';
 
 const Barn = ({ playerId, history }) => {
     const [isShared, setIsShared] = useState(false)
     const [castlePoints, setCastlePoints] = useState(0)
     const [cityPoints, setCityPoints] = useState(0)
-    const [modalIsOpen, setIsOpen] = useState(false)
 
     const { game, dispatch } = useContext(GameContext)
+    const { openModal } = useContext(ModalContext)
 
-    const openModal = () => {
-        setIsOpen(true)
-    }
-
-    const closeModal = () => {
-        setIsOpen(false)
-    }
 
     const featureIsShared = () => {
         setIsShared(!isShared)
@@ -63,8 +55,6 @@ const Barn = ({ playerId, history }) => {
             <SharedFeatureModal 
                 playerId={playerId}
                 history={history}
-                modalIsOpen={modalIsOpen}
-                closeModal={closeModal}
                 score={(cityPoints + castlePoints)}
             />
             </div>

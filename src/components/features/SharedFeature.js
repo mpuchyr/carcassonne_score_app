@@ -1,9 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { addPoints } from '../../actions/actions';
+import ModalContext from '../../context/modal-context';
 import GameContext from '../../context/game-context';
 
 const SharedFeature = ({ playerId, score, history }) => {
     const { game, dispatch} = useContext(GameContext)
+    const { closeModal } = useContext(ModalContext)
     const [playersToShare, setPlayersToShare] = useState([playerId])
 
     const players = game.players.filter(player => player.id !== playerId).sort()
@@ -21,6 +23,7 @@ const SharedFeature = ({ playerId, score, history }) => {
         e.preventDefault()
         const pointsToAdd = parseInt(score)
         dispatch(addPoints(playersToShare, pointsToAdd))
+        closeModal()
         history.push('/')
     }
 

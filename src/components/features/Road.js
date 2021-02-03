@@ -1,12 +1,20 @@
 import React, { useContext, useState } from 'react';
 import { addPoints } from '../../actions/actions';
 import GameContext from '../../context/game-context'; 
+import ModalContext from '../../context/modal-context';
+import SharedFeatureModal from './SharedFeatureModal';
 
 const Road = ({ playerId, history }) => {
     const [score, setScore] = useState(0)
     const [hasInn, setHasInn] = useState(false)
+    const [isShared, setIsShared] = useState(false)
 
     const { game, dispatch} = useContext(GameContext)
+    const { openModal } = useContext(ModalContext)
+
+    const featureIsShared = () => {
+        setIsShared(!isShared)
+    }
 
     const addRoads = (e) => {
         hasInn ? setScore(parseInt(e.target.value) * 2) : setScore(parseInt(e.target.value))
@@ -14,8 +22,12 @@ const Road = ({ playerId, history }) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        dispatch(addPoints(playerId, score))
-        history.push('/')
+        if (!isShared) {
+            dispatch(addPoints(playerId, score))
+            history.push('/')
+        } else {
+            openModal()
+        }
     }
     return (
         <div>
@@ -25,11 +37,16 @@ const Road = ({ playerId, history }) => {
                 <input type="number" min="0" onChange={addRoads}/>
                 <input type="checkbox" />
                 <label>Road has an Inn</label>
-                <input type="checkbox" />
-                <label>This feature is shared</label>
+                <input type="checkbox" onChange={featureIsShared}/>
+                <label>Feature is shared</label>
                 <p>Total: {score}</p>
                 <button>Add</button>
             </form>
+            <SharedFeatureModal 
+                playerId={playerId}
+                history={history}
+                score={score}
+            />
         </div>
     )
 }
