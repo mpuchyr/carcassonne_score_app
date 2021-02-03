@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { addPoints } from '../../actions/actions';
 import GameContext from '../../context/game-context';
+import SharedFeatureModal from './SharedFeatureModal';
 
 const City = ({ playerId, history }) => {
     const { dispatch } = useContext(GameContext)
@@ -8,6 +9,22 @@ const City = ({ playerId, history }) => {
     const [score, setScore] = useState(0)
     const [hasCathedral, setHasCathedral] = useState(false)
     const [endGame, setEndGame] = useState(false)
+    const [isShared, setIsShared] = useState(false)
+
+    const [modalIsOpen, setIsOpen] = useState(false)
+
+
+    const openModal = () => {
+        setIsOpen(true)
+    }
+
+    const closeModal = () => {
+        setIsOpen(false)
+    }
+
+    const featureIsShared = () => {
+        setIsShared(!isShared)
+    }
 
     const isEndGame = () => {
         setEndGame(!endGame)
@@ -31,8 +48,13 @@ const City = ({ playerId, history }) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        dispatch(addPoints(playerId, score))
-        history.push('/')
+        if (!isShared) {
+            dispatch(addPoints(playerId, score))
+            history.push('/')
+        } else {
+            openModal()
+        }
+
     }
     
     return (
@@ -45,11 +67,18 @@ const City = ({ playerId, history }) => {
                 <label>City has a cathedral</label>
                 <input type="checkbox" onChange={isEndGame}/>
                 <label>This is the end game</label>
-                <input type="checkbox" />
+                <input type="checkbox" onChange={featureIsShared}/>
                 <label>Feature is shared</label>
                 <p>Total: {score}</p>
                 <button>Add</button>
             </form>
+            <SharedFeatureModal 
+                playerId={playerId}
+                history={history}
+                modalIsOpen={modalIsOpen}
+                closeModal={closeModal}
+                score={score}
+            />
         </div>
     )
 }
