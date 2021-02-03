@@ -20,6 +20,10 @@ const Road = ({ playerId, history }) => {
         hasInn ? setScore(parseInt(e.target.value) * 2) : setScore(parseInt(e.target.value))
     }
 
+    const roadHasAnInn = () => {
+        setHasInn(!hasInn)
+    }
+
     const onSubmit = (e) => {
         e.preventDefault()
         if (!isShared) {
@@ -35,7 +39,7 @@ const Road = ({ playerId, history }) => {
             <form onSubmit={onSubmit}>
                 <label>Number of Road Tiles: </label>
                 <input type="number" min="0" onChange={addRoads}/>
-                <input type="checkbox" />
+                <input type="checkbox" onChange={roadHasAnInn}/>
                 <label>Road has an Inn</label>
                 <input type="checkbox" onChange={featureIsShared}/>
                 <label>Feature is shared</label>
