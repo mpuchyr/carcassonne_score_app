@@ -5,13 +5,12 @@ import ModalContext from '../../context/modal-context';
 import SharedFeatureModal from './SharedFeatureModal';
 
 const Farm = ({ playerId, history }) => {
-    const [score, setScore] = useState(0)
     const [isShared, setIsShared] = useState(false)
     const [hasPig, setHasPig] = useState(false)
     const [castlePoints, setCastlePoints] = useState(0)
     const [cityPoints, setCityPoints] = useState(0)
 
-    const { game, dispatch } = useContext(GameContext)
+    const { dispatch } = useContext(GameContext)
     const { openModal } = useContext(ModalContext)
 
     const featureIsShared = () => {

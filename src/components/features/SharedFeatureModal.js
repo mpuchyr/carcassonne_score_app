@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import Modal from 'react-modal';
 import ModalContext from '../../context/modal-context';
 import SharedFeature from './SharedFeature';
