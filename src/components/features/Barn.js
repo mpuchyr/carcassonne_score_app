@@ -5,13 +5,24 @@ import GameContext from '../../context/game-context';
 import SharedFeature from './SharedFeature';
 
 const Barn = ({ playerId, history }) => {
-    const [score, setScore] = useState(0)
     const [isShared, setIsShared] = useState(false)
-    const [modalIsOpen, setIsOpen] = useState(false)
     const [castlePoints, setCastlePoints] = useState(0)
     const [cityPoints, setCityPoints] = useState(0)
+    const [modalIsOpen, setIsOpen] = useState(false)
 
     const { game, dispatch } = useContext(GameContext)
+
+    const openModal = () => {
+        setIsOpen(true)
+    }
+
+    const closeModal = () => {
+        setIsOpen(false)
+    }
+
+    const featureIsShared = () => {
+        setIsShared(!isShared)
+    }
 
     const addCastlePoints = (e) => {
         setCastlePoints(e.target.value * 5)
@@ -21,15 +32,17 @@ const Barn = ({ playerId, history }) => {
         setCityPoints(e.target.value * 4)
     }
 
-    const isShared = () => {
-        setIsShared(!isShared)
-    }
 
     const onSubmit = (e) => {
         e.preventDefault()
-        const total = castlePoints + cityPoints
-        dispatch(addPoints(playerId, total))
-        history.push('/')
+        if (!isShared) {            
+            const total = castlePoints + cityPoints
+            dispatch(addPoints(playerId, total))
+            history.push('/')
+        } else {
+            openModal()
+        }
+
     }
 
     return (
@@ -40,14 +53,18 @@ const Barn = ({ playerId, history }) => {
                 <input type="number" min="0" onChange={addCityPoints}/>
                 <label>Castles: </label>
                 <input type="number" min="0" onChange={addCastlePoints} />
-                <input type="checkbox" onChange={isShared}/>
+                <input type="checkbox" onChange={featureIsShared}/>
                 <label>Feature is shared</label>
                 <p>Total: {cityPoints + castlePoints}</p>
                 <button>Add</button>
             </form>
             <button onClick={() => console.log(game)}>Click Me</button>
-            <Modal>
-                <SharedFeature />
+            <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                contentLabel="Shared Feature"
+            >
+                <SharedFeature playerId={playerId} score={(cityPoints + castlePoints)} history={history}/>
             </Modal>
         </div>
     )
