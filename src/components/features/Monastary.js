@@ -4,7 +4,7 @@ import GameContext from '../../context/game-context';
 import ModalContext from '../../context/modal-context';
 import SharedFeatureModal from './SharedFeatureModal';
 
-const Monastary = ({ playerId, history }) => {
+const Monastary = ({ playerId, history, currentFeature }) => {
     const [score, setScore] = useState(0)
     const [tiles, setTiles] = useState(0)
     const [vineyards, setVineyards] = useState(0)
@@ -29,7 +29,7 @@ const Monastary = ({ playerId, history }) => {
         e.preventDefault()
         if (!isShared) {
             const total = tiles + vineyards
-            dispatch(addPoints(playerId, total, "monastary"))
+            dispatch(addPoints(playerId, total, currentFeature))
             history.push('/')
         } else {
             openModal()
@@ -52,6 +52,7 @@ const Monastary = ({ playerId, history }) => {
             <SharedFeatureModal 
                 playerId={playerId}
                 history={history}
+                featureName={currentFeature}
                 score={(tiles + vineyards)}
             />
         </div>

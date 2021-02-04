@@ -3,11 +3,18 @@ const gameReducer = (state, action) => {
         case 'INITIALIZE_GAME':
             return action.newGame
         case 'ADD_POINTS':
-            const playerName = state.players.filter(player => player.id === action.playerId)[0].name
+            const playersToChange = state.players.filter(player => action.playerId.includes(player.id))
+            console.log(action)
             return (
                 {
                     ...state,
-                    history: [...state.history, `${playerName} scored a ${action.featureName} for ${action.total} points`],
+                    history: 
+                        [
+                            ...state.history,
+                            ...playersToChange.map(player => {
+                                return `${player.name} scored a ${action.featureName} for ${action.total} points`
+                            }) 
+                        ],
                     players: state.players.map(player => {
                         if (action.playerId.includes(player.id)) {
                             return {

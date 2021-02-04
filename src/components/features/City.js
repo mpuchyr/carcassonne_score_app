@@ -4,7 +4,7 @@ import GameContext from '../../context/game-context';
 import ModalContext from '../../context/modal-context';
 import SharedFeatureModal from './SharedFeatureModal';
 
-const City = ({ playerId, history }) => {
+const City = ({ playerId, history, currentFeature }) => {
     const { dispatch } = useContext(GameContext)
     const { openModal, closeModal, modalIsOpen } = useContext(ModalContext)
 
@@ -41,7 +41,7 @@ const City = ({ playerId, history }) => {
     const onSubmit = (e) => {
         e.preventDefault()
         if (!isShared) {
-            dispatch(addPoints(playerId, score, 'city'))
+            dispatch(addPoints(playerId, score, currentFeature))
             history.push('/')
         } else {
             openModal()
@@ -67,6 +67,7 @@ const City = ({ playerId, history }) => {
             <SharedFeatureModal 
                 playerId={playerId}
                 history={history}
+                featureName={currentFeature}
                 score={score}
             />
         </div>

@@ -14,17 +14,17 @@ const AddFeature = (props) => {
     const featureToShow = (feature) => {
         switch(feature) {
             case 'barn':
-                return <Barn playerId={playerId} history={history}/>
+                return <Barn playerId={playerId} history={history} currentFeature={currentFeature}/>
             case 'city':
-                return <City playerId={playerId} history={history}/>
+                return <City playerId={playerId} history={history} currentFeature={currentFeature}/>
             case 'farm':
-                return <Farm playerId={playerId} history={history}/>
+                return <Farm playerId={playerId} history={history} currentFeature={currentFeature}/>
             case 'monastary':
-                return <Monastary playerId={playerId} history={history}/>
+                return <Monastary playerId={playerId} history={history} currentFeature={currentFeature}/>
             case 'road':
-                return <Road playerId={playerId} history={history}/>
+                return <Road playerId={playerId} history={history} currentFeature={currentFeature}/>
             default:
-                return <Manual playerId={playerId} history={history}/>
+                return <Manual playerId={playerId} history={history} currentFeature={currentFeature}/>
         }
     }
     

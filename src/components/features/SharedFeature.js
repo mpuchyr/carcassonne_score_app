@@ -3,7 +3,8 @@ import { addPoints } from '../../actions/actions';
 import ModalContext from '../../context/modal-context';
 import GameContext from '../../context/game-context';
 
-const SharedFeature = ({ playerId, score, history }) => {
+const SharedFeature = ({ playerId, score, history, featureName }) => {
+    console.log(featureName)
     const { game, dispatch} = useContext(GameContext)
     const { closeModal } = useContext(ModalContext)
     const [playersToShare, setPlayersToShare] = useState([playerId])
@@ -22,7 +23,7 @@ const SharedFeature = ({ playerId, score, history }) => {
     const onSubmit = (e) => {
         e.preventDefault()
         const pointsToAdd = parseInt(score)
-        dispatch(addPoints(playersToShare, pointsToAdd))
+        dispatch(addPoints(playersToShare, pointsToAdd, featureName))
         closeModal()
         history.push('/')
     }
@@ -33,7 +34,7 @@ const SharedFeature = ({ playerId, score, history }) => {
                 <>
                     <label key={player.id}>{player.name}</label>
                     <input type="checkbox" value={player.id} onChange={onChange}/>
-                </ >
+                </>
             )
         })
     }

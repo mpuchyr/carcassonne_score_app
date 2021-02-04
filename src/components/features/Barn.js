@@ -4,7 +4,9 @@ import GameContext from '../../context/game-context';
 import ModalContext from '../../context/modal-context';
 import SharedFeatureModal from './SharedFeatureModal';
 
-const Barn = ({ playerId, history }) => {
+const Barn = ({ playerId, history, currentFeature }) => {
+    const featureName = currentFeature.toString()
+    console.log(featureName)
     const [isShared, setIsShared] = useState(false)
     const [castlePoints, setCastlePoints] = useState(0)
     const [cityPoints, setCityPoints] = useState(0)
@@ -30,7 +32,7 @@ const Barn = ({ playerId, history }) => {
         e.preventDefault()
         if (!isShared) {            
             const total = castlePoints + cityPoints
-            dispatch(addPoints(playerId, total, 'barn'))
+            dispatch(addPoints(playerId, total, currentFeature))
             history.push('/')
         } else {
             openModal()
@@ -55,6 +57,7 @@ const Barn = ({ playerId, history }) => {
             <SharedFeatureModal 
                 playerId={playerId}
                 history={history}
+                featureName={featureName}
                 score={(cityPoints + castlePoints)}
             />
             </div>

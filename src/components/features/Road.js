@@ -4,7 +4,7 @@ import GameContext from '../../context/game-context';
 import ModalContext from '../../context/modal-context';
 import SharedFeatureModal from './SharedFeatureModal';
 
-const Road = ({ playerId, history }) => {
+const Road = ({ playerId, history, currentFeature }) => {
     const [score, setScore] = useState(0)
     const [hasInn, setHasInn] = useState(false)
     const [isShared, setIsShared] = useState(false)
@@ -27,7 +27,7 @@ const Road = ({ playerId, history }) => {
     const onSubmit = (e) => {
         e.preventDefault()
         if (!isShared) {
-            dispatch(addPoints(playerId, score, 'road'))
+            dispatch(addPoints(playerId, score, currentFeature))
             history.push('/')
         } else {
             openModal()
@@ -49,6 +49,7 @@ const Road = ({ playerId, history }) => {
             <SharedFeatureModal 
                 playerId={playerId}
                 history={history}
+                featureName={currentFeature}
                 score={score}
             />
         </div>

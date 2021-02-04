@@ -4,7 +4,7 @@ import GameContext from '../../context/game-context';
 import ModalContext from '../../context/modal-context';
 import SharedFeatureModal from './SharedFeatureModal';
 
-const Farm = ({ playerId, history }) => {
+const Farm = ({ playerId, history, currentFeature }) => {
     const [isShared, setIsShared] = useState(false)
     const [hasPig, setHasPig] = useState(false)
     const [castlePoints, setCastlePoints] = useState(0)
@@ -12,6 +12,7 @@ const Farm = ({ playerId, history }) => {
 
     const { dispatch } = useContext(GameContext)
     const { openModal } = useContext(ModalContext)
+
 
 
     const featureIsShared = () => {
@@ -35,7 +36,7 @@ const Farm = ({ playerId, history }) => {
         e.preventDefault()
         if (!isShared) {        
             const total = castlePoints + cityPoints
-            dispatch(addPoints(playerId, total, 'farm'))
+            dispatch(addPoints(playerId, total, currentFeature))
             history.push('/')
         } else {
             openModal()
@@ -61,6 +62,7 @@ const Farm = ({ playerId, history }) => {
             <SharedFeatureModal 
                 playerId={playerId}
                 history={history}
+                featureName={currentFeature}
                 score={(cityPoints + castlePoints)}
             />
         </div>
