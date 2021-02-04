@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { v4 as uuid } from 'uuid';
+import moment from 'moment';
 import GameContext from '../context/game-context';
 import { startNewGame } from '../actions/actions';
 
@@ -9,7 +10,7 @@ const NewGame = (props) => {
     const blankPlayerTemplate = {id: uuid(), name: '', score: 0}
     const colors = ['black', 'blue', 'green', 'pink', 'red', 'yellow']
     
-    const [currentGame, setCurrentGame] = useState({id: uuid(), players: [], history: []})
+    const [currentGame, setCurrentGame] = useState({id: uuid(), players: [], history: [], gameDate: moment()})
     const [playerToAdd, setPlayerToAdd] = useState(blankPlayerTemplate)
     const [colorOptions, setColorOptions] = useState(colors)
 
