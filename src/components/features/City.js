@@ -41,7 +41,7 @@ const City = ({ playerId, history }) => {
     const onSubmit = (e) => {
         e.preventDefault()
         if (!isShared) {
-            dispatch(addPoints(playerId, score))
+            dispatch(addPoints(playerId, score, 'city'))
             history.push('/')
         } else {
             openModal()

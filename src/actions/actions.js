@@ -5,21 +5,20 @@ const startNewGame = (newGame) => {
     }
 }
 
-const addPoints = (playerId, total, featureForHistory) => {
+const addPoints = (playerId, total, featureName) => {
     return {
         type: 'ADD_POINTS',
         playerId,
         total,
-        featureForHistory
+        featureName
     }
 }
 
-const subtractPoints = (playerId, total, featureForHistory) => {
+const subtractPoints = (playerId, total) => {
     return {
         type: 'SUBTRACT_POINTS',
         playerId,
         total,
-        featureForHistory
     }
 }
 

@@ -30,7 +30,7 @@ const Barn = ({ playerId, history }) => {
         e.preventDefault()
         if (!isShared) {            
             const total = castlePoints + cityPoints
-            dispatch(addPoints(playerId, total))
+            dispatch(addPoints(playerId, total, 'barn'))
             history.push('/')
         } else {
             openModal()

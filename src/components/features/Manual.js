@@ -27,7 +27,7 @@ const Manual = ({ playerId, history }) => {
 
     const onAdd = () => {
         if (!isShared) {
-            dispatch(addPoints(playerId, score))
+            dispatch(addPoints(playerId, score, 'manual entry'))
             history.push('/')
         } else {
             openModal()

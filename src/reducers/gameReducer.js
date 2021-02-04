@@ -6,6 +6,7 @@ const gameReducer = (state, action) => {
             return (
                 {
                     ...state,
+                    history: [...state.history, `Scored a ${action.featureName} for ${action.total} points`],
                     players: state.players.map(player => {
                         if (action.playerId.includes(player.id)) {
                             return {
@@ -22,6 +23,7 @@ const gameReducer = (state, action) => {
             return (
                 {
                     ...state,
+                    history: [...state.history, `Removed ${action.toal} points`],
                     players: state.players.map(player => {
                         if (action.playerId.includes(player.id)) {
                             const newTotal = player.score -= parseInt(action.total)

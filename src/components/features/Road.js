@@ -27,7 +27,7 @@ const Road = ({ playerId, history }) => {
     const onSubmit = (e) => {
         e.preventDefault()
         if (!isShared) {
-            dispatch(addPoints(playerId, score))
+            dispatch(addPoints(playerId, score, 'road'))
             history.push('/')
         } else {
             openModal()
