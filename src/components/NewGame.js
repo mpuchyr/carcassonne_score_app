@@ -71,6 +71,10 @@ const NewGame = (props) => {
         props.history.push('/')
     }
 
+    const goBack = () => {
+        props.history.push('/')
+    }
+
     return (
         <div>
             <h1>New Game</h1>
@@ -90,6 +94,7 @@ const NewGame = (props) => {
                 </>
             }
             <button onClick={onDone}>Start Game</button>
+            <button onClick={goBack}>Back</button>
         </div>
     )
 }
