@@ -11,7 +11,11 @@ const gameReducer = (state, action) => {
                     history: 
                         [
                             ...playersToChange.map(player => {
-                                return `${player.name} scored a ${action.featureName} for ${action.total} points`
+                                if (playersToChange.length === 1) {
+                                    return `${player.name} scored a ${action.featureName} for ${action.total} points`
+                                } else {
+                                    return `${player.name} scored a shared ${action.featureName} for ${action.total} points`
+                                }
                             }),
                             ...state.history
                         ],
