@@ -29,7 +29,7 @@ const Monastary = ({ playerId, history }) => {
         e.preventDefault()
         if (!isShared) {
             const total = tiles + vineyards
-            dispatch(addPoints(playerId, total))
+            dispatch(addPoints(playerId, total, "monastary"))
             history.push('/')
         } else {
             openModal()
