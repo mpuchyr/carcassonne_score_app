@@ -6,7 +6,6 @@ const History = () => {
 
     const showScoreHistory = () => {
         return game.history.map((item, index) => {
-            console.log(index)
             return (
                 <li key={index}>{item}</li>
             )

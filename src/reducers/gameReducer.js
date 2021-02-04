@@ -10,10 +10,10 @@ const gameReducer = (state, action) => {
                     ...state,
                     history: 
                         [
-                            ...state.history,
                             ...playersToChange.map(player => {
                                 return `${player.name} scored a ${action.featureName} for ${action.total} points`
-                            }) 
+                            }),
+                            ...state.history
                         ],
                     players: state.players.map(player => {
                         if (action.playerId.includes(player.id)) {
