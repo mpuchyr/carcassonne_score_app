@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import GameContext from '../context/game-context';
 
-const History = () => {
+const History = ({ history }) => {
     const { game } = useContext(GameContext)
 
     const showScoreHistory = () => {
@@ -12,6 +12,10 @@ const History = () => {
         })
     }
 
+    const goBack = () => {
+        history.push('/')
+    }
+
     return (
         <div>
             <h1>History Placeholder</h1>
@@ -19,6 +23,7 @@ const History = () => {
                 {showScoreHistory()}
             </ul>
             <button onClick={() => console.log(game)}>Click Me</button>
+            <button onClick={goBack}>Back</button>
         </div>
     )
 }
