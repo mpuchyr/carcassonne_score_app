@@ -9,7 +9,7 @@ const NewGame = (props) => {
     const blankPlayerTemplate = {id: uuid(), name: '', score: 0}
     const colors = ['black', 'blue', 'green', 'pink', 'red', 'yellow']
     
-    const [currentGame, setCurrentGame] = useState({id: uuid(), players: []})
+    const [currentGame, setCurrentGame] = useState({id: uuid(), players: [], history: []})
     const [playerToAdd, setPlayerToAdd] = useState(blankPlayerTemplate)
     const [colorOptions, setColorOptions] = useState(colors)
 

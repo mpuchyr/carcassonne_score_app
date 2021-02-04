@@ -13,6 +13,7 @@ const Farm = ({ playerId, history }) => {
     const { dispatch } = useContext(GameContext)
     const { openModal } = useContext(ModalContext)
 
+
     const featureIsShared = () => {
         setIsShared(!isShared)
     }
@@ -26,7 +27,7 @@ const Farm = ({ playerId, history }) => {
         hasPig ? setCityPoints(e.target.value * 4) : setCityPoints(e.target.value * 3)
     }
 
-    const playerHasPig = () => {
+    const playerHasPig = (e) => {
         setHasPig(!hasPig)
     }
 
