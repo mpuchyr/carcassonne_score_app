@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import moment from 'moment';
 import GameContext from '../context/game-context';
 
 const Main = (props) => {
@@ -23,6 +24,7 @@ const Main = (props) => {
     return (
         <div>
             <h1>Main Screen Placeholder</h1>
+            {moment(game.gameDate).format('MMMM Do YYYY, h:mm:ss a')}
             {game.players && showAllPlayers()}
             <button onClick={() => props.history.push('/newgame')}>New Game</button>
             <button onClick={() => props.history.push('/history')}>History</button>
