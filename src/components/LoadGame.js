@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import moment from 'moment';
+import { loadGame } from '../actions/actions';
+import GameContext from '../context/game-context';
 
-const LoadGame = () => {
+const LoadGame = ({ history }) => {
+    const { dispatch } = useContext(GameContext)
     const savedGames = JSON.parse(localStorage.getItem('savedGames'))
+
+    const onGameLoad = (game) => {
+        dispatch(loadGame(game))
+        history.push('/')
+    }
 
     const showSavedGames = () => {
         return savedGames.map(game => {
@@ -14,7 +22,7 @@ const LoadGame = () => {
                             return <li key={player.id}>{player.name}</li>
                         })}
                     </ul>
-                    <button>Load</button>
+                    <button onClick={() => onGameLoad(game)}>Load</button>
                 </div>
             )
         })
