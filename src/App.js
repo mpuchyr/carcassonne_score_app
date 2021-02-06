@@ -11,7 +11,9 @@ import ModalContext from './context/modal-context';
 import { gameReducer } from './reducers/gameReducer';
 
 function App() {
-  const [game, dispatch] = useReducer(gameReducer, {})
+  const loadedGames = JSON.parse(localStorage.getItem('savedGames'))
+  const lastGame = loadedGames ? loadedGames[loadedGames.length - 1] : {}
+  const [game, dispatch] = useReducer(gameReducer, lastGame)
   const [modalIsOpen, setIsOpen] = useState(false)
   
   const openModal = () => {
