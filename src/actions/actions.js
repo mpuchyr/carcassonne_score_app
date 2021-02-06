@@ -5,6 +5,12 @@ const startNewGame = (newGame) => {
     }
 }
 
+const saveGame = () => {
+    return {
+        type: 'SAVE_GAME',
+    }
+}
+
 const addPoints = (playerId, total, featureName) => {
     return {
         type: 'ADD_POINTS',
@@ -22,4 +28,4 @@ const subtractPoints = (playerId, total) => {
     }
 }
 
-export { startNewGame, addPoints, subtractPoints }
+export { startNewGame, addPoints, subtractPoints, saveGame }

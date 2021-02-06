@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import moment from 'moment';
 import GameContext from '../context/game-context';
+import { saveGame } from '../actions/actions';
 
 const Main = (props) => {
-    const { game } = useContext(GameContext)
+    const { game, dispatch } = useContext(GameContext)
 
 
     const showAllPlayers = () => {
@@ -28,6 +29,7 @@ const Main = (props) => {
             <button onClick={() => props.history.push('/newgame')}>New Game</button>
             <button onClick={() => props.history.push('/history')}>History</button>
             <button onClick={() => console.log(game)}>Click Me</button>
+            <button onClick={() => dispatch(saveGame())}>Save Game</button>
         </div>
     )
 }
