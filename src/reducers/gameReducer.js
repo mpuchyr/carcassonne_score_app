@@ -8,6 +8,8 @@ const gameReducer = (state, action) => {
             const gamesToSave = JSON.stringify([...otherGames, state])
             localStorage.setItem('savedGames', gamesToSave)
             return state
+        case 'LOAD_GAME':
+            return action.game
         case 'ADD_POINTS':
             const playersToChange = state.players.filter(player => action.playerId.includes(player.id))
             console.log(action)
