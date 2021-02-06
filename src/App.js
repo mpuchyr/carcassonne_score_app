@@ -2,6 +2,7 @@ import React, { useState, useReducer } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import AddFeature from './components/AddFeature';
 import History from './components/History';
+import LoadGame from './components/LoadGame';
 import Main from './components/Main';
 import NewGame from './components/NewGame';
 import Player from './components/Player';
@@ -34,6 +35,7 @@ function App() {
               <Switch>
                 <Route exact path="/" component={Main} />
                 <Route exact path="/history" component={History} />
+                <Route exact path="/loadgame" component={LoadGame} />
                 <Route exact path="/newgame" component={NewGame} />
                 <Route exact path="/players/:id" component={Player} />
                 <Route exact path="/players/:id/:featurename" component={AddFeature} />
