@@ -28,6 +28,7 @@ const Main = (props) => {
             {game.players && showAllPlayers()}
             <button onClick={() => props.history.push('/newgame')}>New Game</button>
             <button onClick={() => props.history.push('/history')}>History</button>
+            <button onClick={() => props.history.push('/loadgame')}>Load Game</button>
             <button onClick={() => console.log(game)}>Click Me</button>
             <button onClick={() => dispatch(saveGame())}>Save Game</button>
         </div>
