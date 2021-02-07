@@ -7,18 +7,35 @@ import { startNewGame } from '../actions/actions';
 const NewGame = (props) => {
     const { dispatch } = useContext(GameContext)
 
-    const blankPlayerTemplate = {id: uuid(), name: '', score: 0}
+    const savedPlayers = JSON.parse(localStorage.getItem('players')) || []
+
+
+    const blankPlayerTemplate = {id: '', name: '', score: 0}
     const colors = ['black', 'blue', 'green', 'pink', 'red', 'yellow']
     
     const [currentGame, setCurrentGame] = useState({id: uuid(), players: [], history: [], gameDate: moment()})
     const [playerToAdd, setPlayerToAdd] = useState(blankPlayerTemplate)
     const [colorOptions, setColorOptions] = useState(colors)
+    const [playerOptions, setPlayerOptions] = useState(savedPlayers)
 
     const onNameChange = (e) => {
         setPlayerToAdd({
             ...playerToAdd,
+            id: uuid(),
             name: e.target.value
         })
+    }
+
+    const onPlayerChange = (e) => {
+        if (!!e.target.value) {
+            const playerInfo = JSON.parse(e.target.value)
+            console.log(playerInfo)
+            setPlayerToAdd({
+                ...playerToAdd,
+                id: playerInfo.id,
+                name: playerInfo.name
+            })
+        }
     }
 
     const onColorChange = (e) => {
@@ -35,6 +52,11 @@ const NewGame = (props) => {
                 ...currentGame,
                 players: [...currentGame.players, playerToAdd]
             })
+            const playerToSave = { id: playerToAdd.id, name: playerToAdd.name}
+            if ( !playerOptions.includes(playerToSave)){
+                const playersToSave = JSON.stringify([ ...savedPlayers, playerToSave])
+                localStorage.setItem('players', playersToSave)
+            }
             setColorOptions(colorOptions.filter(color => color !== playerToAdd.color))
             setPlayerToAdd(blankPlayerTemplate)
         } else {
@@ -45,6 +67,17 @@ const NewGame = (props) => {
     const colorSelection = () => {
         return (
             colorOptions.map(color => <option key={color} value={color}>{color.charAt(0).toUpperCase() + color.slice(1)}</option>)
+        )
+    }
+
+    const playerSelection = () => {
+        return (
+            playerOptions.map(playerOption => {
+                console.log(playerOption)
+                return (
+                    <option key={playerOption.id} value={JSON.stringify(playerOption)}>{playerOption.name}</option>
+                )
+            })
         )
     }
 
@@ -85,6 +118,10 @@ const NewGame = (props) => {
                 <>
                 <h2>Add Player</h2>
                 <form onSubmit={onAddPlayer}>
+                    <select onChange={onPlayerChange}>
+                        <option value=''>Player</option>
+                        {playerSelection()}
+                    </select>
                     <input onChange={onNameChange} type="text" name="player_name" placeholder="Name" value={playerToAdd.name} />
                     <select onChange={onColorChange}>
                         <option value="" required>Color</option>
