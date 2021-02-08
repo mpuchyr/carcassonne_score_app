@@ -107,6 +107,8 @@ const NewGame = (props) => {
             ...currentGame,
             players: currentGame.players.filter(player => player.id !== playerId)
         })
+        const playerToAdd = savedPlayers.filter(savedPlayer => savedPlayer.id === playerId)[0]
+        setPlayerOptions([...playerOptions, playerToAdd])
         setColorOptions([...colorOptions, color].sort())
     }
 
