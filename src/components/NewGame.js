@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import moment from 'moment';
 import GameContext from '../context/game-context';
-import { startNewGame } from '../actions/actions';
+import { startNewGame, saveGame } from '../actions/actions';
 
 const NewGame = (props) => {
     const { dispatch } = useContext(GameContext)
@@ -132,6 +132,7 @@ const NewGame = (props) => {
 
     const onDone = () => {
         dispatch(startNewGame(currentGame))
+        dispatch(saveGame())
         props.history.push('/')
     }
 
