@@ -7,7 +7,17 @@ import { startNewGame } from '../actions/actions';
 const NewGame = (props) => {
     const { dispatch } = useContext(GameContext)
 
-    const savedPlayers = JSON.parse(localStorage.getItem('players')) || []
+    const savedPlayers = JSON.parse(
+        localStorage.getItem('players')).sort((savedPlayer1, savedPlayer2) => {
+            if (savedPlayer1.name < savedPlayer2.name ) {
+                return -1
+            } else if (savedPlayer1.name > savedPlayer2.name) {
+                return 1
+            } else {
+                return 0
+            }
+        }) 
+        || []
 
 
     const blankPlayerTemplate = {id: '', name: '', score: 0}
@@ -108,7 +118,15 @@ const NewGame = (props) => {
             players: currentGame.players.filter(player => player.id !== playerId)
         })
         const playerToAdd = savedPlayers.filter(savedPlayer => savedPlayer.id === playerId)[0]
-        setPlayerOptions([...playerOptions, playerToAdd])
+        setPlayerOptions([...playerOptions, playerToAdd].sort((playerToAdd1, playerToAdd2) => {
+            if (playerToAdd1.name < playerToAdd2.name) {
+                return -1
+            } else if (playerToAdd1.name > playerToAdd2.name) {
+                return 1
+            } else {
+                return 0
+            }
+        }))
         setColorOptions([...colorOptions, color].sort())
     }
 
