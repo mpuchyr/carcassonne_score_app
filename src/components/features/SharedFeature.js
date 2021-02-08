@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { addPoints } from '../../actions/actions';
+import { addPoints, saveGame } from '../../actions/actions';
 import ModalContext from '../../context/modal-context';
 import GameContext from '../../context/game-context';
 
@@ -24,6 +24,7 @@ const SharedFeature = ({ playerId, score, history, featureName }) => {
         e.preventDefault()
         const pointsToAdd = parseInt(score)
         dispatch(addPoints(playersToShare, pointsToAdd, featureName))
+        dispatch(saveGame())
         closeModal()
         history.push('/')
     }

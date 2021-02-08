@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { addPoints } from '../../actions/actions';
+import { addPoints, saveGame } from '../../actions/actions';
 import GameContext from '../../context/game-context'; 
 import ModalContext from '../../context/modal-context';
 import SharedFeatureModal from './SharedFeatureModal';
@@ -28,6 +28,7 @@ const Road = ({ playerId, history, currentFeature }) => {
         e.preventDefault()
         if (!isShared) {
             dispatch(addPoints(playerId, score, currentFeature))
+            dispatch(saveGame())
             history.push('/')
         } else {
             openModal()

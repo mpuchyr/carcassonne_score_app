@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import Modal from 'react-modal';
-import { addPoints, subtractPoints } from '../../actions/actions';
+import { addPoints, subtractPoints, saveGame } from '../../actions/actions';
 import GameContext from '../../context/game-context';
 import ModalContext from '../../context/modal-context';
 import SharedFeatureModal from './SharedFeatureModal';
@@ -28,6 +28,7 @@ const Manual = ({ playerId, history }) => {
     const onAdd = () => {
         if (!isShared) {
             dispatch(addPoints(playerId, score, 'manual entry'))
+            dispatch(saveGame())
             history.push('/')
         } else {
             openModal()
@@ -37,6 +38,7 @@ const Manual = ({ playerId, history }) => {
 
     const onSubtract = () => {
         dispatch(subtractPoints(playerId, score))
+        dispatch(saveGame())
         history.push('/')
     }
 
