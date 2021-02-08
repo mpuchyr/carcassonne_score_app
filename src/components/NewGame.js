@@ -53,10 +53,20 @@ const NewGame = (props) => {
                 players: [...currentGame.players, playerToAdd]
             })
             const playerToSave = { id: playerToAdd.id, name: playerToAdd.name}
-            if ( !playerOptions.includes(playerToSave)){
+            let playerFound = false
+            for (let i = 0; i < savedPlayers.length; i++) {
+                if (savedPlayers[i].id === playerToSave.id) {
+                    console.log(savedPlayers[i].id)
+                    playerFound = true
+                    break
+                }
+            }
+            console.log(playerFound)
+            if ( playerFound === false ){
                 const playersToSave = JSON.stringify([ ...savedPlayers, playerToSave])
                 localStorage.setItem('players', playersToSave)
             }
+            setPlayerOptions(playerOptions.filter(playerOption => playerOption.id !== playerToAdd.id))
             setColorOptions(colorOptions.filter(color => color !== playerToAdd.color))
             setPlayerToAdd(blankPlayerTemplate)
         } else {
