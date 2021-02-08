@@ -1,15 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import moment from 'moment';
 import { loadGame } from '../actions/actions';
 import GameContext from '../context/game-context';
 
 const LoadGame = ({ history }) => {
     const { dispatch } = useContext(GameContext)
-    const savedGames = JSON.parse(localStorage.getItem('savedGames'))
+    let savedGames = JSON.parse(localStorage.getItem('savedGames'))
+    
+
+
 
     const onGameLoad = (game) => {
         dispatch(loadGame(game))
         history.push('/')
+    }
+
+    const onGameDelete = (game) => {
+        const newSavedGames = JSON.stringify(savedGames.filter(savedGame => savedGame.id !== game.id))
+        localStorage.setItem('savedGames', newSavedGames)
     }
 
     const showSavedGames = () => {
@@ -23,6 +31,7 @@ const LoadGame = ({ history }) => {
                         })}
                     </ul>
                     <button onClick={() => onGameLoad(game)}>Load</button>
+                    <button onClick={() => onGameDelete(game)}>Delete</button>
                 </div>
             )
         })

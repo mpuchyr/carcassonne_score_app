@@ -10,10 +10,11 @@ import System from './components/System';
 import GameContext from './context/game-context';
 import ModalContext from './context/modal-context';
 import { gameReducer } from './reducers/gameReducer';
+import moment from 'moment';
 
 function App() {
   const loadedGames = JSON.parse(localStorage.getItem('savedGames'))
-  const lastGame = loadedGames ? loadedGames[loadedGames.length - 1] : {}
+  const lastGame = loadedGames.length > 0 ? loadedGames[loadedGames.length - 1] : {id: '1', players: [], gameDate: moment()}
   const [game, dispatch] = useReducer(gameReducer, lastGame)
   const [modalIsOpen, setIsOpen] = useState(false)
   
