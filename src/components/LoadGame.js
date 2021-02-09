@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import moment from 'moment';
 import { loadGame } from '../actions/actions';
 import GameContext from '../context/game-context';
@@ -18,6 +18,7 @@ const LoadGame = ({ history }) => {
     const onGameDelete = (game) => {
         const newSavedGames = JSON.stringify(savedGames.filter(savedGame => savedGame.id !== game.id))
         localStorage.setItem('savedGames', newSavedGames)
+        window.location.reload(false)
     }
 
     const showSavedGames = () => {
