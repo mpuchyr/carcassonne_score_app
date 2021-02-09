@@ -5,11 +5,16 @@ const History = ({ history }) => {
     const { game } = useContext(GameContext)
 
     const showScoreHistory = () => {
-        return game.history.map((item, index) => {
-            return (
-                <li key={index}>{item}</li>
-            )
-        })
+        if (game.history && game.history.length > 0) {
+            return game.history.map((item, index) => {
+                return (
+                    <li key={index}>{item}</li>
+                )
+            })
+        } else {
+            return <h2>No history to show yet</h2>
+        }
+
     }
 
     const goBack = () => {
