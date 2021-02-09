@@ -1,8 +1,11 @@
 import React from 'react';
 
-const System = () => {
+const System = ({ history }) => {
     return (
-        <h1>System Placeholder</h1>
+        <div>
+            <h1>System Placeholder</h1>
+            <button onClick={() => history.push('/')}>Back</button>
+        </div>
     )
 }
 
