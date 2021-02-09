@@ -21,6 +21,10 @@ const LoadGame = ({ history }) => {
         window.location.reload()
     }
 
+    const onGoBack = () => {
+        history.push('/')
+    }
+
     const showSavedGames = () => {
         return savedGames.map(game => {
             return (
@@ -42,6 +46,7 @@ const LoadGame = ({ history }) => {
         <div>
             <h1>Load Game Placeholder</h1>
             {showSavedGames()}
+            <button onClick={onGoBack}>Back</button>
         </div>
     )
 }
