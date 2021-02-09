@@ -18,7 +18,7 @@ const LoadGame = ({ history }) => {
     const onGameDelete = (game) => {
         const newSavedGames = JSON.stringify(savedGames.filter(savedGame => savedGame.id !== game.id))
         localStorage.setItem('savedGames', newSavedGames)
-        window.location.reload(false)
+        window.location.reload()
     }
 
     const showSavedGames = () => {
