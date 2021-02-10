@@ -17,7 +17,7 @@ const Player = (props) => {
     const destination = `${locationPartial}/manual`
 
     const goBack = () => {
-        props.history.push('/')
+        props.history.goBack()
     }
     
     return (

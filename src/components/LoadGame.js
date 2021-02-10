@@ -22,7 +22,7 @@ const LoadGame = ({ history }) => {
     }
 
     const onGoBack = () => {
-        history.push('/')
+        history.goBack()
     }
 
     const showSavedGames = () => {

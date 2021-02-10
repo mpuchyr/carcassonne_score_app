@@ -137,7 +137,7 @@ const NewGame = (props) => {
     }
 
     const goBack = () => {
-        props.history.push('/')
+        props.history.goBack()
     }
 
     return (

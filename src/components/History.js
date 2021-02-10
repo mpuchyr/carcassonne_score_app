@@ -18,7 +18,7 @@ const History = ({ history }) => {
     }
 
     const goBack = () => {
-        history.push('/')
+        history.goBack()
     }
 
     return (
