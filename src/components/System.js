@@ -17,6 +17,7 @@ const System = ({ history }) => {
             <button onClick={() => history.push('/newgame')}>New Game</button>
             <button onClick={onGameSave}>Save Game</button>
             <button onClick={() => history.push('/loadgame')}>Load Game</button>
+            <button onClick={() => history.push('/savedplayers')}>All Saved Players</button>
             <button onClick={() => history.goBack()}>Back</button>
         </div>
     )
