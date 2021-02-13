@@ -15,11 +15,10 @@ const MainHeader = () => {
 
     return (
         <div>
-            <button onClick={openMenu}>Menu</button>
-            <Menu isOpen={menuIsOpen} width={300}>
-                <button><NavLink to="/newgame">New Game</NavLink></button>
-                <button><NavLink to="/loadgame">Load Game</NavLink></button>
-                <button><NavLink to="/savedplayers">All Saved Players</NavLink></button>
+            <Menu isOpen={menuIsOpen} >
+                <button onClick={closeMenu}><NavLink to="/newgame">New Game</NavLink></button>
+                <button onClick={closeMenu}><NavLink to="/loadgame">Load Game</NavLink></button>
+                <button onClick={closeMenu}><NavLink to="/savedplayers">All Saved Players</NavLink></button>
             </Menu>
             <h1>Carcassonne</h1>
         </div>
