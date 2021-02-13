@@ -4,6 +4,7 @@ import AddFeature from './components/AddFeature';
 import History from './components/History';
 import LoadGame from './components/LoadGame';
 import Main from './components/Main';
+import MainHeader from './components/MainHeader';
 import NewGame from './components/NewGame';
 import Player from './components/Player';
 import SavedPlayers from './components/SavedPlayers';
@@ -30,10 +31,10 @@ function App() {
 
   return (
       
-        <Router>
-          <h1>Placeholder</h1>          
+        <Router>     
           <GameContext.Provider value={{game, dispatch}}>
             <ModalContext.Provider value={{ modalIsOpen, openModal, closeModal }}>
+              <MainHeader />
               <Switch>
                 <Route exact path="/" component={Main} />
                 <Route exact path="/history" component={History} />
