@@ -8,7 +8,6 @@ import MainHeader from './components/MainHeader';
 import NewGame from './components/NewGame';
 import Player from './components/Player';
 import SavedPlayers from './components/SavedPlayers';
-import System from './components/System';
 import GameContext from './context/game-context';
 import ModalContext from './context/modal-context';
 import { gameReducer } from './reducers/gameReducer';
@@ -43,7 +42,6 @@ function App() {
                 <Route exact path="/players/:id" component={Player} />
                 <Route exact path="/players/:id/:featurename" component={AddFeature} />
                 <Route exact path="/savedplayers" component={SavedPlayers}/>
-                <Route exact path="/system" component={System} />
               </Switch>
             </ModalContext.Provider>
           </GameContext.Provider>
