@@ -19,8 +19,8 @@ const SavedPlayers = ({ history }) => {
     const deletePlayer = (playerId) => {
         const modifiedPlayers = allSavedPlayers.filter(player => player.id !== playerId)
         console.log(modifiedPlayers)
-        // setAllSavedPlayers(modifiedPlayers)
-        // localStorage.setItem('players', JSON.stringify(modifiedPlayers))
+        setAllSavedPlayers(modifiedPlayers)
+        localStorage.setItem('players', JSON.stringify(modifiedPlayers))
     }
 
 
