@@ -29,7 +29,6 @@ const Main = (props) => {
             {game.players && showAllPlayers()}
             {game.players.length === 0 && <button onClick={() => props.history.push('/newgame')}>New Game</button>}
             <button onClick={() => props.history.push('/history')}>History</button>
-            <button onClick={() => props.history.push('/system')}>System</button>
             <button onClick={() => console.log(game)}>Click Me</button>
 
         </div>
