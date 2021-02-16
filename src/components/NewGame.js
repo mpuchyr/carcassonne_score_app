@@ -7,8 +7,10 @@ import { startNewGame, saveGame } from '../actions/actions';
 const NewGame = (props) => {
     const { dispatch } = useContext(GameContext)
 
-    const savedPlayers = JSON.parse(
-        localStorage.getItem('players')).sort((savedPlayer1, savedPlayer2) => {
+    const playersInMemory = JSON.parse(localStorage.getItem('players'))
+
+    const savedPlayers = 
+        playersInMemory && playersInMemory.sort((savedPlayer1, savedPlayer2) => {
             if (savedPlayer1.name < savedPlayer2.name ) {
                 return -1
             } else if (savedPlayer1.name > savedPlayer2.name) {
