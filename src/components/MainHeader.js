@@ -1,24 +1,15 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React from 'react';
 import { slide as Menu } from 'react-burger-menu';
 
 const MainHeader = () => {
-    const [menuIsOpen, setMenuIsOpen] = useState(false)
-
-    const openMenu = () => {
-        setMenuIsOpen(true)
-    }
-
-    const closeMenu = () => {
-        setMenuIsOpen(false)
-    }
 
     return (
         <div>
-            <Menu isOpen={menuIsOpen} >
-                <button onClick={closeMenu}><NavLink to="/newgame">New Game</NavLink></button>
-                <button onClick={closeMenu}><NavLink to="/loadgame">Load Game</NavLink></button>
-                <button onClick={closeMenu}><NavLink to="/savedplayers">All Saved Players</NavLink></button>
+            <Menu >
+                <a className="menu-item" href="/"><button>Home</button></a>
+                <a className="menu-item" href="/newgame"><button>New Game</button></a>
+                <a className="menu-item" href="/loadgame"><button>Load Game</button></a>
+                <a className="menu-item" href="/savedplayers"><button>All Saved Players</button></a>
             </Menu>
             <h1>Carcassonne</h1>
         </div>
