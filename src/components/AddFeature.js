@@ -33,6 +33,7 @@ const AddFeature = (props) => {
             <h1>Add Feature Placeholder</h1>
             <p>{currentFeature}</p>
             {featureToShow(currentFeature)}
+            <button onClick={() => history.goBack()}>Back</button>
         </div>
     )
 }
