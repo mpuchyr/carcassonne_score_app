@@ -2,7 +2,6 @@ import React from 'react';
 import { slide as Menu } from 'react-burger-menu';
 
 const MainHeader = () => {
-
     return (
         <div>
             <Menu >
@@ -11,7 +10,7 @@ const MainHeader = () => {
                 <a className="menu-item" href="/loadgame"><button>Load Game</button></a>
                 <a className="menu-item" href="/savedplayers"><button>All Saved Players</button></a>
             </Menu>
-            <h1>Carcassonne</h1>
+            <h1 className="main-header-title">Carcassonne</h1>
         </div>
     )
 }
