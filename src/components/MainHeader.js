@@ -1,16 +1,23 @@
-import React from 'react';
-import { slide as Menu } from 'react-burger-menu';
+import React, { useState } from 'react';
 
 const MainHeader = () => {
+    const [menuIsVisible, setMenuIsVisible] = useState(false)
+
+    const menu = document.querySelector('#menu')
+    console.log(menu)
+    
     return (
         <div>
-            <Menu >
-                <a className="menu-item" href="/"><button>Home</button></a>
-                <a className="menu-item" href="/newgame"><button>New Game</button></a>
-                <a className="menu-item" href="/loadgame"><button>Load Game</button></a>
-                <a className="menu-item" href="/savedplayers"><button>All Saved Players</button></a>
-            </Menu>
+            <button onClick={() => setMenuIsVisible(!menuIsVisible)}>Menu</button>
             <h1 className="main-header-title">Carcassonne</h1>
+            {menuIsVisible && 
+                <div id="menu">
+                    <a href="/"><button>Home</button></a>
+                    <a href="/newgame"><button>New Game</button></a>
+                    <a href="/loadgame"><button>Load Game</button></a>
+                    <a href="/savedplayers"><button>All Saved Players</button></a>
+                </div>
+            }
         </div>
     )
 }
