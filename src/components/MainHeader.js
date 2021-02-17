@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 
 const MainHeader = () => {
     const [menuIsVisible, setMenuIsVisible] = useState(false)
-
-    const menu = document.querySelector('#menu')
-    console.log(menu)
     
     return (
         <div>
