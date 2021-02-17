@@ -6,15 +6,13 @@ const MainHeader = () => {
     return (
         <div>
             <button onClick={() => setMenuIsVisible(!menuIsVisible)}>Menu</button>
-            <h1 className="main-header-title">Carcassonne</h1>
-            {menuIsVisible && 
-                <div id="menu">
-                    <a href="/"><button>Home</button></a>
-                    <a href="/newgame"><button>New Game</button></a>
-                    <a href="/loadgame"><button>Load Game</button></a>
-                    <a href="/savedplayers"><button>All Saved Players</button></a>
-                </div>
-            }
+            <h1 className="main-header-title">Carcassonne</h1> 
+            <div id={menuIsVisible ? "menu-visible" : "menu-invisible"}>
+                <a href="/"><button>Home</button></a>
+                <a href="/newgame"><button>New Game</button></a>
+                <a href="/loadgame"><button>Load Game</button></a>
+                <a href="/savedplayers"><button>All Saved Players</button></a>
+            </div>
         </div>
     )
 }

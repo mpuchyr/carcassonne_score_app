@@ -12,6 +12,15 @@ code {
     monospace;
 }
 
+#menu-visible {
+  height: 100%;
+  width: 100%;
+}
+
+#menu-invisible {
+  display: none;
+}
+
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
