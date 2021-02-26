@@ -133,9 +133,14 @@ const NewGame = (props) => {
     }
 
     const onDone = () => {
-        dispatch(startNewGame(currentGame))
-        dispatch(saveGame())
-        props.history.push('/')
+        if (currentGame.players.length >= 2) {
+            dispatch(startNewGame(currentGame))
+            dispatch(saveGame())
+            props.history.push('/')
+        } else {
+            alert('You need at least 2 players to start a game')
+        }
+
     }
 
     const goBack = () => {
