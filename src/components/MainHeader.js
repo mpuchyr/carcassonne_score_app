@@ -12,6 +12,14 @@ const MainHeader = () => {
         }
     }
 
+    const handleMenuClick = () => {
+        if (menuIsVisible) {
+            setMenuIsVisible(false)
+        } else {
+            setMenuIsVisible(true)
+        }
+    }
+
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside)
 
@@ -20,7 +28,7 @@ const MainHeader = () => {
     
     return (
         <div>
-            <button onClick={() => setMenuIsVisible(!menuIsVisible)}>Menu</button>
+            <button onClick={handleMenuClick}>Menu</button>
             <h1 className="main-header-title">Carcassonne</h1> 
             {menuIsVisible && <div className="dropdown" ref={reference}>
                 <a href="/"><button>Home</button></a>
