@@ -150,7 +150,7 @@ const NewGame = (props) => {
     return (
         <div>
             <h1>New Game</h1>
-            <h2>Players</h2>
+            {currentGame.players.length > 0 && <h2>Players</h2>}
             {showPlayersInGame()}
             {currentGame.players.length < 6 && 
                 <>
