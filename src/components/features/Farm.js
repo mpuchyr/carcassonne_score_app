@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { addPoints, saveGame } from '../../actions/actions';
 import GameContext from '../../context/game-context'; 
 import ModalContext from '../../context/modal-context';
@@ -9,10 +9,25 @@ const Farm = ({ playerId, history, currentFeature }) => {
     const [hasPig, setHasPig] = useState(false)
     const [castlePoints, setCastlePoints] = useState(0)
     const [cityPoints, setCityPoints] = useState(0)
+    const [total, setTotal] = useState(0)
 
     const { dispatch } = useContext(GameContext)
     const { openModal } = useContext(ModalContext)
 
+    useEffect(() => {
+        changeTotal()
+    })
+
+    const changeTotal = () => {
+        let totalPoints = 0
+        if (hasPig) {
+            totalPoints = (cityPoints * 4) + (castlePoints * 5)
+            setTotal(totalPoints)
+        } else {
+            totalPoints = (cityPoints * 3) + (castlePoints * 4)
+            setTotal(totalPoints)
+        }
+    }
 
 
     const featureIsShared = () => {
@@ -21,11 +36,11 @@ const Farm = ({ playerId, history, currentFeature }) => {
 
 
     const addCastlePoints = (e) => {
-        hasPig ? setCastlePoints(e.target.value * 5) : setCastlePoints(e.target.value * 4)
+        setCastlePoints(e.target.value)
     }
 
     const addCityPoints = (e) => {
-        hasPig ? setCityPoints(e.target.value * 4) : setCityPoints(e.target.value * 3)
+        setCityPoints(e.target.value)
     }
 
     const playerHasPig = (e) => {
@@ -35,7 +50,6 @@ const Farm = ({ playerId, history, currentFeature }) => {
     const onSubmit = (e) => {
         e.preventDefault()
         if (!isShared) {        
-            const total = castlePoints + cityPoints
             dispatch(addPoints(playerId, total, currentFeature))
             dispatch(saveGame())
             history.push('/')
@@ -57,14 +71,14 @@ const Farm = ({ playerId, history, currentFeature }) => {
                 <label>Has Pig</label>
                 <input type="checkbox" onChange={featureIsShared} />
                 <label>Feature is shared</label>
-                <p>Total: {cityPoints + castlePoints}</p>
+                <p>Total: {total}</p>
                 <button>Add</button>
             </form>
             <SharedFeatureModal 
                 playerId={playerId}
                 history={history}
                 featureName={currentFeature}
-                score={(cityPoints + castlePoints)}
+                score={total}
             />
         </div>
     )
