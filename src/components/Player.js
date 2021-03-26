@@ -15,6 +15,7 @@ const Player = (props) => {
     const toMonastary = `${locationPartial}/monastary`
     const toRoad = `${locationPartial}/road`
     const destination = `${locationPartial}/manual`
+    const toTest = `${locationPartial}/test`
 
     const goBack = () => {
         props.history.goBack()
@@ -30,6 +31,7 @@ const Player = (props) => {
             <NavLink to={toMonastary}>Monastary</NavLink>
             <NavLink to={toRoad}>Road</NavLink>
             <NavLink to={destination}>Manual Point Entry</NavLink>
+            <NavLink to={toTest}>Test</NavLink>
             <button onClick={() => console.log(game)}>Click Me</button>
             <button onClick={goBack}>Back</button>
         </div>

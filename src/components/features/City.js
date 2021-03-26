@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { addPoints, saveGame } from '../../actions/actions';
 import GameContext from '../../context/game-context';
 import ModalContext from '../../context/modal-context';
@@ -37,6 +37,7 @@ const City = ({ playerId, history, currentFeature }) => {
             setScore(e.target.value * 2)
         }
     }
+
 
     const onSubmit = (e) => {
         e.preventDefault()

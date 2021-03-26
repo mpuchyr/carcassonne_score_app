@@ -5,6 +5,7 @@ import Farm from './features/Farm';
 import Manual from './features/Manual';
 import Monastary from './features/Monastary';
 import Road from './features/Road';
+import TestFeature from './features/TestFeature';
 
 const AddFeature = (props) => {
     const currentFeature = props.match.params.featurename
@@ -23,6 +24,8 @@ const AddFeature = (props) => {
                 return <Monastary playerId={playerId} history={history} currentFeature={currentFeature}/>
             case 'road':
                 return <Road playerId={playerId} history={history} currentFeature={currentFeature}/>
+            case 'test':
+                return <TestFeature playerId={playerId} history={history} currentFeature={currentFeature} />
             default:
                 return <Manual playerId={playerId} history={history} currentFeature={currentFeature}/>
         }
