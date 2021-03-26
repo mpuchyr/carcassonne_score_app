@@ -6,13 +6,19 @@ import SharedFeatureModal from './SharedFeatureModal';
 
 const City = ({ playerId, history, currentFeature }) => {
     const { dispatch } = useContext(GameContext)
-    const { openModal, closeModal, modalIsOpen } = useContext(ModalContext)
+    const { openModal } = useContext(ModalContext)
 
-    const [score, setScore] = useState(0)
+    const [points, setPoints] = useState(0)
+    const [total, setTotal] = useState(0)
+
     const [hasCathedral, setHasCathedral] = useState(false)
     const [endGame, setEndGame] = useState(false)
     const [isShared, setIsShared] = useState(false)
 
+
+    useEffect(() => {
+        changeTotal()
+    })
 
     const featureIsShared = () => {
         setIsShared(!isShared)
@@ -26,23 +32,26 @@ const City = ({ playerId, history, currentFeature }) => {
         setHasCathedral(!hasCathedral)
     }
 
-    const onChange = (e) => {
+    const changeTotal = () => {
         if (hasCathedral && endGame) {
-            setScore(0)
+            setTotal(points * 0)
         } else if (hasCathedral) {
-            setScore(e.target.value * 3)
+            setTotal(points * 3)
         } else if (endGame) {
-            setScore(e.target.value)
+            setTotal(points)
         } else {
-            setScore(e.target.value * 2)
+            setTotal(points * 2)
         }
     }
 
+    const onChange = (e) => {
+        setPoints(e.target.value)
+    }
 
     const onSubmit = (e) => {
         e.preventDefault()
         if (!isShared) {
-            dispatch(addPoints(playerId, score, currentFeature))
+            dispatch(addPoints(playerId, total, currentFeature))
             dispatch(saveGame())
             history.push('/')
         } else {
@@ -63,14 +72,14 @@ const City = ({ playerId, history, currentFeature }) => {
                 <label>This is the end game</label>
                 <input type="checkbox" onChange={featureIsShared}/>
                 <label>Feature is shared</label>
-                <p>Total: {score}</p>
+                <p>Total: {total}</p>
                 <button>Add</button>
             </form>
             <SharedFeatureModal 
                 playerId={playerId}
                 history={history}
                 featureName={currentFeature}
-                score={score}
+                score={total}
             />
         </div>
     )
