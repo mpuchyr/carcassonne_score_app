@@ -9,6 +9,7 @@ const Manual = ({ playerId, history, currentFeature }) => {
     const [score, setScore] = useState(0)
     const [isShared, setIsShared] = useState(false)
     const [modalIsOpen, setIsOpen] = useState(false)
+    const [isSubtracted, setIsSubtracted] = useState(false)
 
     const { game, dispatch } = useContext(GameContext)
     const { openModal } = useContext(ModalContext)
@@ -37,9 +38,15 @@ const Manual = ({ playerId, history, currentFeature }) => {
     }
 
     const onSubtract = () => {
-        dispatch(subtractPoints(playerId, score))
-        dispatch(saveGame())
-        history.push('/')
+        setIsSubtracted(true)
+        if (!isShared) {
+            dispatch(subtractPoints(playerId, score))
+            dispatch(saveGame())
+            history.push('/')
+        } else {            
+            openModal()
+        }
+
     }
 
     const featureIsShared = () => {
@@ -63,6 +70,7 @@ const Manual = ({ playerId, history, currentFeature }) => {
                     featureName={currentFeature}
                     history={history}
                     score={score}
+                    isSubtracted={isSubtracted}
                 />
             </div>
         </div>

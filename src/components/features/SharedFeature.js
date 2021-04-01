@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { addPoints, saveGame } from '../../actions/actions';
+import { addPoints, saveGame, subtractPoints } from '../../actions/actions';
 import ModalContext from '../../context/modal-context';
 import GameContext from '../../context/game-context';
 
-const SharedFeature = ({ playerId, score, history, featureName }) => {
+const SharedFeature = ({ playerId, score, history, featureName, isSubtracted }) => {
     console.log(featureName)
     const { game, dispatch} = useContext(GameContext)
     const { closeModal } = useContext(ModalContext)
@@ -23,7 +23,11 @@ const SharedFeature = ({ playerId, score, history, featureName }) => {
     const onSubmit = (e) => {
         e.preventDefault()
         const pointsToAdd = parseInt(score)
-        dispatch(addPoints(playersToShare, pointsToAdd, featureName))
+        if (isSubtracted) {
+            dispatch(subtractPoints(playersToShare, pointsToAdd, featureName))
+        } else {
+            dispatch(addPoints(playersToShare, pointsToAdd, featureName))
+        }
         dispatch(saveGame())
         closeModal()
         history.push('/')
