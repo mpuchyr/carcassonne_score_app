@@ -40,10 +40,17 @@ const gameReducer = (state, action) => {
                 }
             )
         case 'SUBTRACT_POINTS':            
+            const playersToSubtract = state.players.filter(player => action.playerId.includes(player.id))
             return (
                 {
                     ...state,
-                    history: [...state.history, `Removed ${action.toal} points`],
+                    history: 
+                        [
+                            ...playersToSubtract.map(player => {
+                                return `${player.name} removed ${action.total} points`
+                            }),
+                            ...state.history
+                        ],
                     players: state.players.map(player => {
                         if (action.playerId.includes(player.id)) {
                             const newTotal = player.score -= parseInt(action.total)

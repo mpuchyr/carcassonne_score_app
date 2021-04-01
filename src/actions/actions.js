@@ -27,11 +27,12 @@ const addPoints = (playerId, total, featureName) => {
     }
 }
 
-const subtractPoints = (playerId, total) => {
+const subtractPoints = (playerId, total, featureName) => {
     return {
         type: 'SUBTRACT_POINTS',
         playerId,
         total,
+        featureName
     }
 }
 

@@ -5,7 +5,7 @@ import GameContext from '../../context/game-context';
 import ModalContext from '../../context/modal-context';
 import SharedFeatureModal from './SharedFeatureModal';
 
-const Manual = ({ playerId, history }) => {
+const Manual = ({ playerId, history, currentFeature }) => {
     const [score, setScore] = useState(0)
     const [isShared, setIsShared] = useState(false)
     const [modalIsOpen, setIsOpen] = useState(false)
@@ -60,6 +60,7 @@ const Manual = ({ playerId, history }) => {
                 <button onClick={() => console.log(isShared)}>Check isShared</button>
                 <SharedFeatureModal 
                     playerId={playerId}
+                    featureName={currentFeature}
                     history={history}
                     score={score}
                 />
