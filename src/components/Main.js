@@ -10,7 +10,9 @@ const Main = (props) => {
         return (
             game.players.map(player => {
                 return (
-                    <p id={`player-${player.color}`}
+                    <p 
+                        id={`player-${player.color}`}
+                        className="player-score"
                         key={player.id}
                         onClick={() => props.history.push(`/players/${player.id}`)}
                     >
