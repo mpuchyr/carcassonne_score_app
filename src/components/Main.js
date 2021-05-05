@@ -8,26 +8,28 @@ const Main = (props) => {
 
     const showAllPlayers = () => {
         return (
-            game.players.map(player => {
-                return (
-                    <p 
-                        id={`player-${player.color}`}
-                        className="player-score"
-                        key={player.id}
-                        onClick={() => props.history.push(`/players/${player.id}`)}
-                    >
-                        {player.name} {player.color} {player.score}
-                    </p>
-                )
-            })
+            <ul>
+                {game.players.map(player => {
+                    return (
+                        <li 
+                            id={`player-${player.color}`}
+                            className="player-score"
+                            key={player.id}
+                            onClick={() => props.history.push(`/players/${player.id}`)}
+                        >
+                            {player.name} {player.color} {player.score}
+                        </li>
+                    )
+                })}
+            </ul>
         )
     }
 
 
     
     return (
-        <div>
-            <h1>{moment(game.gameDate).format('MMMM Do YYYY, h:mm:ss a')}</h1>
+        <div className="main-container">
+            <h1>{moment(game.gameDate).format('MMMM Do YYYY, h:mm a')}</h1>
             {game.players && showAllPlayers()}
             {game.players.length === 0 && <button onClick={() => props.history.push('/newgame')}>New Game</button>}
             <button onClick={() => props.history.push('/history')}>History</button>
