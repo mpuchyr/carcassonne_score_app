@@ -34,4 +34,7 @@
 
 .player-score {
     cursor: pointer;
+    font-size: $l-size;
+    list-style: none;
+    padding: $s-size;
 }
