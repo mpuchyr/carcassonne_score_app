@@ -17,7 +17,8 @@ const Main = (props) => {
                             key={player.id}
                             onClick={() => props.history.push(`/players/${player.id}`)}
                         >
-                            {player.name} {player.color} {player.score}
+                            <h2 className="player-name-display">{player.name}</h2> 
+                            <h2 className="player-score-display">{player.score}</h2>
                         </li>
                     )
                 })}

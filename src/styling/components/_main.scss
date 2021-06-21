@@ -34,7 +34,15 @@
 
 .player-score {
     cursor: pointer;
-    font-size: $l-size;
+    display: flex;
     list-style: none;
     padding: $s-size;
+}
+
+.player-name-display {
+    flex: 50%;
+}
+
+.player-score-display {
+    flex: 50%;
 }
