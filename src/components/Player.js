@@ -8,14 +8,18 @@ const Player = (props) => {
     const id = props.match.params.id
     const player = game.players.filter(player => player.id === id)[0]
 
-    const locationPartial = `/players/${id}`
-    const toBarn = `${locationPartial}/barn`
-    const toCity = `${locationPartial}/city`
-    const toFarm = `${locationPartial}/farm`
-    const toMonastary = `${locationPartial}/monastary`
-    const toRoad = `${locationPartial}/road`
-    const destination = `${locationPartial}/manual`
-    const toTest = `${locationPartial}/test`
+    const showLinks = () => {
+        const locationPartial = `/players/${id}`
+        const linkNameArray = ['barn', 'city', 'farm', 'monastary', 'road', 'manual', 'test']
+        return (
+            linkNameArray.map(lnk => {
+                const page = `${locationPartial}/${lnk}`
+                return (
+                    <button><NavLink to={page}>{lnk}</NavLink></button>
+                )
+            })
+        )
+    }
 
     const goBack = () => {
         props.history.goBack()
@@ -25,13 +29,7 @@ const Player = (props) => {
         <div>
             <h1>{player.name}</h1>
             <h1>Player #{props.match.params.id} Placeholder</h1>
-            <NavLink to={toBarn}>Barn</NavLink>
-            <NavLink to={toCity}>City</NavLink>
-            <NavLink to={toFarm}>Farm</NavLink>
-            <NavLink to={toMonastary}>Monastary</NavLink>
-            <NavLink to={toRoad}>Road</NavLink>
-            <NavLink to={destination}>Manual Point Entry</NavLink>
-            <NavLink to={toTest}>Test</NavLink>
+            {showLinks()}
             <button onClick={() => console.log(game)}>Click Me</button>
             <button onClick={goBack}>Back</button>
         </div>
