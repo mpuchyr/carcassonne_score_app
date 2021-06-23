@@ -14,8 +14,9 @@ const Player = (props) => {
         return (
             linkNameArray.map(lnk => {
                 const page = `${locationPartial}/${lnk}`
+                const name = lnk[0].toUpperCase() + lnk.slice(1, )
                 return (
-                    <button><NavLink to={page}>{lnk}</NavLink></button>
+                    <button><NavLink to={page}>{name}</NavLink></button>
                 )
             })
         )
