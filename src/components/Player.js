@@ -28,10 +28,8 @@ const Player = (props) => {
     
     return (
         <div>
-            <h1>{player.name}</h1>
-            <h1>Player #{props.match.params.id} Placeholder</h1>
+            <h1>{player.name} - {player.score}</h1>
             {showLinks()}
-            <button onClick={() => console.log(game)}>Click Me</button>
             <button onClick={goBack}>Back</button>
         </div>
 
