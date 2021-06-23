@@ -27,7 +27,6 @@ const History = ({ history }) => {
             <ul>
                 {showScoreHistory()}
             </ul>
-            <button onClick={() => console.log(game)}>Click Me</button>
             <button onClick={goBack}>Back</button>
         </div>
     )
