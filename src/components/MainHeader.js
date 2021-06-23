@@ -13,11 +13,7 @@ const MainHeader = () => {
     }
 
     const handleMenuClick = () => {
-        if (menuIsVisible) {
-            setMenuIsVisible(false)
-        } else {
-            setMenuIsVisible(true)
-        }
+        setMenuIsVisible(!menuIsVisible)
     }
 
     useEffect(() => {
