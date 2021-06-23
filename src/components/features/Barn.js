@@ -54,7 +54,6 @@ const Barn = ({ playerId, history, currentFeature }) => {
                 <p>Total: {cityPoints + castlePoints}</p>
                 <button>Add</button>
             </form>
-            <button onClick={() => console.log(game)}>Click Me</button>
             <SharedFeatureModal 
                 playerId={playerId}
                 history={history}
